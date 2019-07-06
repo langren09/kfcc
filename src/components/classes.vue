@@ -1,9 +1,6 @@
 <template>
     <div class="classess">
-        <header>
-            <h2>内地居民办理出入境证件申请</h2>
-            <img src="" alt="">
-        </header>
+        <navbar :title="navTitle"></navbar>
         <div class="content">
             <div class="nav">
                 <a href="">申请人类别</a>
@@ -12,7 +9,7 @@
                 <p>请选择您属于哪一类人员？</p>
                 <ul>
                     <li v-for="(sel, index) in selData" :key="index">
-                        <mt-button class="btnPri" type="primary" size="large">{{ sel }}</mt-button>
+                        <mt-button class="btnPri" type="primary" size="large" @click="goto()">{{ sel }}</mt-button>
                     </li>
                 </ul>
             </div>
@@ -21,6 +18,7 @@
 </template>
 
 <script>
+  import { MessageBox } from 'mint-ui';
   export default {
     name: "classes",
     data() {
@@ -30,36 +28,57 @@
           '河南省其他地市户籍居民',
           '外省户籍居民',
           '已备案国家工作人员'
-        ]
+        ],
+        dataNews: {
+        },
+        navTitle: '内地居民办理出入境证件申请'
       }
     },
     created() {
     //  1. 根据参数获取数据
     //   this.getSelData()
+      this.getNews()
     },
     methods: {
-      // getSelData() {
-      //   this.$this.get('',)
-      // }
+      getNews() {
+        this.$axios.get('getindexNews?', {
+          params: {
+            code: this.code
+          }
+        })
+          .then( (res) => {
+            // 数组合并
+            // console.log(res)
+            this.dataNews = res.data.data;
+            // console.log( this.dataNews)
+          })
+          .catch( (err) => {
+            console.log(err)
+          })
+      },
+      goto() {
+        //
+        // console.log(this.dataNews.message);
+        // 初始化数据包
+        var template = '';
+        for (var i=0; i<this.dataNews.message.length; i++) {
+          template += '<li>'+ this.dataNews.message[i] +'</li>'
+        }
+        MessageBox.alert(template, '温馨提示')
+          .then((res) => {
+            this.$router.push({
+              name: 'formSub',
+              params: {
+                code: this.code
+              }
+            })
+          })
+      }
     }
   }
 </script>
 
 <style scoped>
-    /*标题样式*/
-    header {
-        height: 60px;
-        background-color: #2A82E4;
-        width: 100%;
-        border-bottom: 2px solid #FFB211;
-    }
-    header h2{
-        text-align: center;
-        font-size: 1.2em;
-        color: #eee;
-        font-weight: 600;
-        line-height: 60px;
-    }
     /*选择项内容*/
     .content {
         padding: 20px 10px;

@@ -74,7 +74,7 @@
       },
       goto() {
         //
-        // console.log(this.dataNews.message)
+        // console.log(this.dataNews.message);
         // 初始化数据包
         var template = '';
         for (var i=0; i<this.dataNews.message.length; i++) {
