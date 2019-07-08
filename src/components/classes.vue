@@ -1,6 +1,8 @@
 <template>
     <div class="classess">
         <navbar :title="navTitle"></navbar>
+        <!--第一步-->
+        <steps :currentVal="step"></steps>
         <div class="content">
             <div class="nav">
                 <a href="">申请人类别</a>
@@ -31,6 +33,7 @@
         ],
         dataNews: {
         },
+        step: 1,
         navTitle: '内地居民办理出入境证件申请'
       }
     },
