@@ -13,6 +13,7 @@ import classes from './components/classes.vue'
 import formSub from './components/formSub.vue'
 // import Note from './components/component/notes.vue'
 import Navbar from './components/component/navbar.vue'
+import formXx from './components/forms/formXx.vue'
 // 引入第三方包 end
 /**引入包*/
 // 引入样式包
@@ -30,8 +31,9 @@ Axios.defaults.baseURL = 'https://www.easy-mock.com/mock/5d171b2ba31bc21d4c43769
 // 挂载包 end
 // 注册组件
 Vue.component(Button.name, Button);
-// Vue.component('note', Note);
 Vue.component('navbar', Navbar);
+// 提交表单组件
+Vue.component('formXx', formXx);
 // 配置包 start
 var router = new VueRouter({
   routes: [

@@ -3,9 +3,12 @@
         <navbar :title="navTitle"></navbar>
         <div class="content">
             <div class="nav">
-                <a href="">申请人信息</a>
+                <a href="">申请人基本信息</a>
             </div>
         </div>
+        <router-view></router-view>
+        <!--提交信息界面-->
+        <form-xx></form-xx>
     </div>
 </template>
 
@@ -22,7 +25,7 @@
 
 <style scoped>
     .content {
-        padding: 20px 10px;
+        padding: 10px 10px;
     }
     /*<!--申请人信息样式-->*/
     .content .nav a{
