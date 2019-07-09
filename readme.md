@@ -13,6 +13,12 @@
 - 提示以后跳转的信息也是死的，非动态的（以name为主）
 - 以注册全局组件的方式模块化处理事项吧
 
+#### 问题点
+- 提交界面返回两页
+- 提交信息返回时需要全部缀上
+- 先添加个上一步
+- 注册个复选框组件
+
 
 
 
@@ -54,3 +60,34 @@
     # 对于 webpack 2
     npm install --save-dev extract-text-webpack-plugin@2.1.2
     ```
+    
+    
+### 插件说明
+#### mdCheckbox
+- 1. 主文件调用：
+```html
+  <md-checkbox :sel-label="selLab" :sel-id="selId" @getSelVal="fn"></md-checkbox> 
+```   
+- 2. 参数设置： 
+```javascript
+// 设置默认参数
+// selLab 设置标题名（可自定义）
+// selLab 设置id名（可自定义）
+    data() {
+          return {
+            selLab: '护照',
+            selId: 'sels'
+          }
+        }
+```
+```javascript
+    // 监听获取子组件传值
+    // 其中fn 传递的是 value 值 （可自定义）
+    // ["gasc", true] 第一个参数：id，第二个参数：选中状态
+          fn(data) {
+            console.log(data)
+          }
+```
+- 3. 样式设置
+    + .magic-checkbox+label:before 指的是复选框
+    + .magic-checkbox+label:after 指的是复选框右边文字

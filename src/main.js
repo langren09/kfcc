@@ -14,6 +14,7 @@ import formSub from './components/forms/formSub.vue'
 // import Note from './components/component/notes.vue'
 import Navbar from './components/component/navbar.vue'
 import steps from './components/component/steps.vue'
+import mdCheckbox from './components/component/mdCheckbox.vue'
 import formXx from './components/forms/formXx.vue'
 import formYw from './components/forms/formYw.vue'
 // 引入第三方包 end
@@ -35,13 +36,15 @@ Axios.defaults.baseURL = 'https://www.easy-mock.com/mock/5d171b2ba31bc21d4c43769
 Vue.component(Button.name, Button);
 Vue.component(Field.name, Field);
 Vue.component(Checklist.name, Checklist);
-/// 注册自定义组件
+///** 注册自定义组件
 Vue.component('navbar', Navbar);
 // 提交表单组件
 Vue.component('formXx', formXx);
 Vue.component('formYw', formYw);
 // 进度条组件
 Vue.component('steps', steps);
+// 复选框组件
+Vue.component('mdCheckbox', mdCheckbox);
 // 配置包 start
 var router = new VueRouter({
   routes: [
