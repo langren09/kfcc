@@ -5,6 +5,9 @@
             <!--提交信息界面-->
             <form-xx v-if="pageBl" v-on:loadPage="loadflag"></form-xx>
             <form-yw v-if="!pageBl"></form-yw>
+            <div class="btn" v-if="!pageBl">
+                <mt-button class="btnPri" type="primary" size="large" @click="next()">确认提交</mt-button>
+            </div>
         </form>
     </div>
 </template>
@@ -28,5 +31,15 @@
 </script>
 
 <style scoped>
+    /*按钮样式*/
+    .btn {
+        margin-top: 20px;
+        padding: 0 10px;
+        /*width: 92%;*/
+        /*margin-left: 4%;*/
 
+    }
+    .btn .btnPri{
+        background-color: #2A82E4;
+    }
 </style>

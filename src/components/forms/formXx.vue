@@ -66,6 +66,8 @@
     /*按钮样式*/
     .btn {
         margin: 20px 0;
+        /*width: 92%;*/
+        /*margin-left: 4%;*/
     }
     .btn .btnPri{
         background-color: #2A82E4;

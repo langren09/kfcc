@@ -9,7 +9,7 @@
                 <h4>办理普通护照</h4>
                 <div class="sel">
                     <div class="logo">
-                        <img src="./../../static/imgs/pas.png" alt="">
+                        <img src="http://www.delytech.com/kfcc/src/static/imgs/pas.png" alt="">
                     </div>
                     <ul class="lx">
                         <div class="ywzl">
@@ -40,7 +40,7 @@
                 <h4>办理港澳通行证和签注</h4>
                 <div class="sel">
                     <div class="logo">
-                        <img src="./../../static/imgs/pas.png" alt="">
+                        <img src="http://www.delytech.com/kfcc/src/static/imgs/pas.png" alt="">
                     </div>
                     <ul class="lx">
                         <div class="ywzl">
@@ -71,7 +71,7 @@
                 <h4>办理往来台湾通行证和签注</h4>
                 <div class="sel">
                     <div class="logo">
-                        <img src="./../../static/imgs/pas.png" alt="">
+                        <img src="http://www.delytech.com/kfcc/src/static/imgs/pas.png" alt="">
                     </div>
                     <ul class="lx">
                         <div class="ywzl">
@@ -145,7 +145,15 @@
         display: inline-block;
         padding: 10px 6px 10px 0;
     }
-    /*section ul.lx li input{*/
-        /*margin-right: 4px;*/
-    /*}*/
+    section ul.lx label{
+        font-weight: 500;
+        color: #666;
+        font-size: 0.9em;
+    }
+    section ul.lx li input{
+        margin-right: 4px;
+    }
+    section .ywzl input{
+        margin-right: 4px;
+    }
 </style>
