@@ -5,8 +5,7 @@
             <!--提交信息界面-->
             <form-xx v-if="pageXx" @loadPageYw="loadflagYw"></form-xx>
             <form-yw v-if="pageYw" @loadPageSure="loadflagSure" @loadPageXx="loadflagXx"></form-yw>
-            <form-sure v-if="pageSure" ></form-sure>
-
+            <form-sure v-if="pageSure" @loadPageYw="loadflagYw"></form-sure>
             <div class="btn" v-if="pageBtn">
                 <mt-button class="btnPri" type="primary" size="large" @click="next()">确认提交</mt-button>
             </div>
@@ -21,9 +20,9 @@
     data() {
       return {
         navTitle: '开封公安出入境自助办证申请系统',
-        pageXx: false,
+        pageXx: true,
         pageYw: false,
-        pageSure: true,
+        pageSure: false,
         pageBtn: false
       }
     },
@@ -35,16 +34,19 @@
         // 接收到的参数在data中
         this.pageYw = true;
         this.pageXx = false;
+        this.pageSure = false;
       },
       loadflagSure(data) {
         // 接收到的参数在data中
         this.pageSure = true;
         this.pageYw = false;
+        this.pageXx = false;
       },
       loadflagXx(data) {
         // 接收到的参数在data中
         this.pageXx = true;
         this.pageYw = false;
+        this.pageSure = false;
       },
     }
   }

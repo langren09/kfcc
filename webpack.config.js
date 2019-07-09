@@ -17,7 +17,7 @@ module.exports = {
   },
   output: {
     //所有产出资源路径
-    path: path.join(__dirname, 'distUgly1'),
+    path: path.join(__dirname, 'distUgly2'),
     filename: 'js/[name]-[chunkhash:6].js'
   },
   module: {

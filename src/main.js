@@ -18,6 +18,7 @@ import mdCheckbox from './components/component/mdCheckbox.vue'
 import formXx from './components/forms/formXx.vue'
 import formYw from './components/forms/formYw.vue'
 import formSure from './components/forms/formSure.vue'
+import formOk from './components/forms/formOk.vue'
 // 引入第三方包 end
 /**引入包*/
 // 引入样式包
@@ -53,6 +54,7 @@ var router = new VueRouter({
     { name: 'index', path: '/index', component: indexPage},
     { name: 'classes', path: '/classes', component: classes},
     { name: 'formSub', path: '/formSub', component: formSub},
+    { name: 'formOk', path: '/formOk', component: formOk},
     { path: '/', redirect: {name: 'index'}}
   ]
 })

@@ -28,8 +28,8 @@
             </ul>
         </div>
         <div class="btn">
-            <mt-button class="btnPri btnBack" type="default" size="normal" @click="next()">返回修改</mt-button>
-            <mt-button class="btnPri btnSur" type="primary" size="normal" @click="goback()">确认无误</mt-button>
+            <mt-button class="btnPri btnBack" type="default" size="normal" @click="goback()">返回修改</mt-button>
+            <mt-button class="btnPri btnSur" type="primary" size="normal" @click="onsubmit()">确认无误</mt-button>
         </div>
     </div>
 </template>
@@ -40,6 +40,18 @@
     data() {
       return {
         step: 4
+      }
+    },
+    methods: {
+      //  跳转到提交信息界面
+      onsubmit() {
+        this.$router.push({
+          name: 'formOk'
+        })
+      },
+      // 返回业务类型页面
+      goback() {
+        this.$emit('loadPageYw', true)
       }
     }
   }
