@@ -30,3 +30,12 @@ html, body {
  line-height: 26px;
 }
 /*按钮信息*/
+
+/*清除浮动影响*/
+.clearFix:after {
+ content: '';
+ height: 0;
+ display: block;
+ overflow: hidden;
+ clear: both;
+}

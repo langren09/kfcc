@@ -21,9 +21,9 @@
     data() {
       return {
         navTitle: '开封公安出入境自助办证申请系统',
-        pageXx: true,
+        pageXx: false,
         pageYw: false,
-        pageSure: false,
+        pageSure: true,
         pageBtn: false
       }
     },
