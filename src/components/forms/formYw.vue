@@ -19,6 +19,10 @@
                     </ul>
                 </div>
             </section>
+            <div class="btn">
+                <mt-button class="btnPri" type="primary" size="large" @click="next()">下一步</mt-button>
+                <mt-button class="btnPri" type="primary" size="large" @click="goback()">返回上页</mt-button>
+            </div>
         </div>
     </div>
 </template>
@@ -107,6 +111,16 @@
       // 监听获取子组件传值
       getSelflog(data) {
         console.log(data)
+      },
+      //  跳转到确认信息界面
+      next() {
+        //  1. 判断信息输入无误
+        //  2. 子组件向父组件传递参数
+        // 利用emit传递参数
+        this.$emit('loadPageSure', true)
+      },
+      goback() {
+        this.$emit('loadPageXx', true)
       }
     }
   }
@@ -122,6 +136,16 @@
     ul.lx .magic-checkbox+label:before{
         width: 18px;
         height: 18px;
+    }
+    /*按钮样式*/
+    .btn {
+        margin: 20px 0;
+        /*width: 92%;*/
+        /*margin-left: 4%;*/
+    }
+    .btn .btnPri{
+        background-color: #2A82E4;
+        margin-bottom: 10px;
     }
 </style>
 

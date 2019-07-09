@@ -17,6 +17,7 @@ import steps from './components/component/steps.vue'
 import mdCheckbox from './components/component/mdCheckbox.vue'
 import formXx from './components/forms/formXx.vue'
 import formYw from './components/forms/formYw.vue'
+import formSure from './components/forms/formSure.vue'
 // 引入第三方包 end
 /**引入包*/
 // 引入样式包
@@ -41,6 +42,7 @@ Vue.component('navbar', Navbar);
 // 提交表单组件
 Vue.component('formXx', formXx);
 Vue.component('formYw', formYw);
+Vue.component('formSure', formSure);
 // 进度条组件
 Vue.component('steps', steps);
 // 复选框组件

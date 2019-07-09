@@ -3,9 +3,11 @@
         <navbar :title="navTitle"></navbar>
         <form action="">
             <!--提交信息界面-->
-            <form-xx v-if="pageBl" @loadPage="loadflag"></form-xx>
-            <form-yw v-if="!pageBl"></form-yw>
-            <div class="btn" v-if="!pageBl">
+            <form-xx v-if="pageXx" @loadPageYw="loadflagYw"></form-xx>
+            <form-yw v-if="pageYw" @loadPageSure="loadflagSure" @loadPageXx="loadflagXx"></form-yw>
+            <form-sure v-if="pageSure" ></form-sure>
+
+            <div class="btn" v-if="pageBtn">
                 <mt-button class="btnPri" type="primary" size="large" @click="next()">确认提交</mt-button>
             </div>
         </form>
@@ -19,22 +21,31 @@
     data() {
       return {
         navTitle: '开封公安出入境自助办证申请系统',
-        pageBl: false,
-        // selLab: '护照'
+        pageXx: true,
+        pageYw: false,
+        pageSure: false,
+        pageBtn: false
       }
     },
     created() {
     //  监听checkbox传值
     },
     methods: {
-      loadflag(data) {
+      loadflagYw(data) {
         // 接收到的参数在data中
-        this.pageBl = !data
+        this.pageYw = true;
+        this.pageXx = false;
       },
-      // // 监听获取子组件传值
-      // getSelflog(data) {
-      //   console.log(data)
-      // }
+      loadflagSure(data) {
+        // 接收到的参数在data中
+        this.pageSure = true;
+        this.pageYw = false;
+      },
+      loadflagXx(data) {
+        // 接收到的参数在data中
+        this.pageXx = true;
+        this.pageYw = false;
+      },
     }
   }
 </script>

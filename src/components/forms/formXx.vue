@@ -25,6 +25,7 @@
         </section>
         <div class="btn">
             <mt-button class="btnPri" type="primary" size="large" @click="next()">下一步</mt-button>
+            <mt-button class="btnPri" type="primary" size="large" @click="goback()">返回上页</mt-button>
         </div>
     </div>
 </template>
@@ -38,12 +39,16 @@
       }
     },
     methods: {
-        next() {
-        //  1. 判断信息输入无误
-          //  2. 子组件向父组件传递参数
-          // 利用emit传递参数
-          this.$emit('loadPage', true)
-        }
+      next() {//  1. 判断信息输入无误
+        //  2. 子组件向父组件传递参数
+        // 利用emit传递参数
+        this.$emit('loadPageYw', true)
+      },
+      goback() {
+        this.$router.push({
+          name: 'classes'
+        })
+      }
     }
   }
 </script>
@@ -71,6 +76,7 @@
     }
     .btn .btnPri{
         background-color: #2A82E4;
+        margin-bottom: 10px;
     }
 </style>
 <style>

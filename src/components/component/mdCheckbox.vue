@@ -3,7 +3,7 @@
         <!--复选框-->
         <!--父向子传初始化值-->
         <!--子向父传递选中项值selVal-->
-        <input type="checkbox" class="magic-checkbox" :id="selId" v-model="selVal" required>
+        <input type="checkbox" class="magic-checkbox" :id="selId" v-model="selVal">
         <label class="checkbox control-label" :for="selId" @click="setSelVal()">{{ selLabel }}
         </label>
     </div>
