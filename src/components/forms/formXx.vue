@@ -21,7 +21,7 @@
             <mt-field label="民族" placeholder="请选择民族" @focus.native.capture="ShowPupMz" v-model="forms.minzu"></mt-field>
             <md-popup :inval="popupDataMz.inVal" :popup-data="popupDataMz" @popupHideMz="popupHideMz"></md-popup>
 
-            <mt-field label="户籍地" placeholder="请选择户口所在地" @focus.native.capture="ShowPupHjd" v-model="forms.Hjd"></mt-field>
+            <mt-field label="户籍地" placeholder="请选择户口所在地" @focus.native.capture="ShowPupHjd" v-model="forms.Hjd" readonly="readonly"></mt-field>
             <city-sel :inval="popupDataHjd.inVal" :popup-data="popupDataHjd" @popupHideHjd="popupHideHjd"></city-sel>
 
             <mt-field label="出生地" placeholder="请选择出生地" @focus.native.capture="ShowPupCSD" v-model="forms.CSD"></mt-field>
@@ -127,27 +127,28 @@
       ShowPupHjd() {
         this.popupDataHjd.inVal = true;
       },
-        //  民族 子传父
+      //  民族 子传父
       popupHideMz(data) {
         this.popupDataMz.inVal = false;
-        if(data !== '') {
+        if (data !== '') {
           this.forms.minzu = data;
         }
       },
       //  出生地 子传父
       popupHideCSD(data) {
         this.popupDataCSD.inVal = false;
-        if(data !== '') {
+        if (data !== '') {
           this.forms.CSD = data;
         }
       },
       //  出生地 子传父
       popupHideHjd(data) {
         this.popupDataHjd.inVal = false;
-        if(data !== '') {
+        if (data !== '') {
           this.forms.Hjd = data;
         }
       }
+
     }
   }
 </script>
