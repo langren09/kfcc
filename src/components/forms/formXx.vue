@@ -7,13 +7,26 @@
             <div class="nav">
                 <a href="">申请人基本信息</a>
             </div>
-            <mt-field label="身份证号码" placeholder="18位身份证号码" state="success"></mt-field>
-            <mt-field label="姓名" placeholder="请输入全名"></mt-field>
-            <mt-field label="中文姓" placeholder="只输入您的姓氏"></mt-field>
-            <mt-field label="中文名" placeholder="只输入名（不含姓氏）"></mt-field>
-            <mt-field label="民族" placeholder="请选择"></mt-field>
-            <mt-field label="户籍地" placeholder="请选择户口所在地"></mt-field>
-            <mt-field label="出生地" placeholder="请选择出生地"></mt-field>
+            <mt-field label="身份证号码" placeholder="18位身份证号码" type="text"></mt-field>
+            <mt-field label="姓名" placeholder="请输入全名" type="text"></mt-field>
+            <div class="nameZh clearFix">
+                <mt-field label="中文姓" placeholder="张" type="text"></mt-field>
+                <mt-field label="中文名" placeholder="三" type="text"></mt-field>
+            </div>
+            <div class="namePy clearFix">
+                <mt-field label="拼音姓" placeholder="ZHANG" type="text"></mt-field>
+                <mt-field label="拼音名" placeholder="SAN" type="text"></mt-field>
+            </div>
+
+            <mt-field label="民族" placeholder="请选择民族" @focus.native.capture="ShowPupMz" v-model="forms.minzu"></mt-field>
+            <md-popup :inval="popupDataMz.inVal" :popup-data="popupDataMz" @popupHideMz="popupHideMz"></md-popup>
+
+            <mt-field label="户籍地" placeholder="请选择户口所在地" @focus.native.capture="ShowPupHjd" v-model="forms.Hjd"></mt-field>
+            <city-sel :inval="popupDataHjd.inVal" :popup-data="popupDataHjd" @popupHideHjd="popupHideHjd"></city-sel>
+
+            <mt-field label="出生地" placeholder="请选择出生地" @focus.native.capture="ShowPupCSD" v-model="forms.CSD"></mt-field>
+            <md-popup :inval="popupDataCSD.inVal" :popup-data="popupDataCSD" @popupHideCSD="popupHideCSD"></md-popup>
+
             <mt-field label="手机号码" placeholder="请输入申请人的手机号码" type="tel"></mt-field>
         </section>
         <section class="jjXx">
@@ -27,16 +40,55 @@
             <mt-button class="btnPri" type="primary" size="large" @click="next()">下一步</mt-button>
             <mt-button class="btnPri" type="primary" size="large" @click="goback()">返回上页</mt-button>
         </div>
+        <!--<city-sel></city-sel>-->
     </div>
 </template>
 
 <script>
+
   export default {
     name: "formXx",
     data() {
       return {
         step: 2,
+        forms: {
+            minzu: '',
+            CSD: '',
+            Hjd:''
+        },
+        popupDataMz: {
+          fnName: 'popupHideMz',
+          inVal: false,
+          polab: '民族',
+          potaps: '请选择民族',
+          slots: [{
+            values: []
+          }],
+        },
+        popupDataCSD: {
+          fnName: 'popupHideCSD',
+          inVal: false,
+          polab: '出生地',
+          potaps: '请选择出生地',
+          slots: [{
+            values: []
+          }],
+        },
+        popupDataHjd: {
+          fnName: 'popupHideHjd',
+          inVal: false,
+          polab: '户籍地',
+          potaps: '请选择户籍地'
+        }
       }
+    },
+    created() {
+      // 获取民族列表数据
+        this.initMz();
+      //  获取民族列表数据
+      this.initCSD();
+      //  获取户籍地列表数据
+      this.initHjd();
     },
     methods: {
       next() {//  1. 判断信息输入无误
@@ -48,6 +100,53 @@
         this.$router.push({
           name: 'classes'
         })
+      },
+      // 初始化民族列表数据
+      initMz() {
+        this.popupDataMz.slots[0].values = this.jsonData.MinZuList;
+      },
+      // 初始化出生地列表数据
+      initCSD() {
+        // console.log(this.jsonData.CsdList);
+        this.popupDataCSD.slots[0].values = this.jsonData.CsdList;
+      },
+      // 初始化户籍地列表数据
+      initHjd() {
+        // console.log(this.jsonData.CsdList);
+        // this.popupDataCSD.slots[0].values = this.jsonData.CsdList;
+      },
+      // 父传子
+      ShowPupMz() {
+        this.popupDataMz.inVal = true;
+      },
+      // 父传子
+      ShowPupCSD() {
+        this.popupDataCSD.inVal = true;
+      },
+      // 父传子
+      ShowPupHjd() {
+        this.popupDataHjd.inVal = true;
+      },
+        //  民族 子传父
+      popupHideMz(data) {
+        this.popupDataMz.inVal = false;
+        if(data !== '') {
+          this.forms.minzu = data;
+        }
+      },
+      //  出生地 子传父
+      popupHideCSD(data) {
+        this.popupDataCSD.inVal = false;
+        if(data !== '') {
+          this.forms.CSD = data;
+        }
+      },
+      //  出生地 子传父
+      popupHideHjd(data) {
+        this.popupDataHjd.inVal = false;
+        if(data !== '') {
+          this.forms.Hjd = data;
+        }
       }
     }
   }
@@ -68,11 +167,14 @@
         color: #777;
         font-weight: 400;
     }
+    /*文本框样式*/
+    .nameZh .mint-field, .namePy .mint-field{
+        float: left;
+        width: 50%;
+    }
     /*按钮样式*/
     .btn {
         margin: 20px 0;
-        /*width: 92%;*/
-        /*margin-left: 4%;*/
     }
     .btn .btnPri{
         background-color: #2A82E4;
@@ -88,11 +190,14 @@
         color: #444;
     }
     form .mint-field .mint-cell-wrapper {
-        border-bottom: 1px solid #eee;
+        /*border-bottom: 1px solid #eee;*/
         padding: 0;
         margin: 0 10px;
     }
     form .mint-field{
         text-decoration: none;
+    }
+    form .mint-field .mint-cell-title {
+        width: 90px;
     }
 </style>

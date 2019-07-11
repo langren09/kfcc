@@ -18,12 +18,16 @@
 - 提交信息返回时需要全部缀上  （判定后再写）
 - 先添加个上一步           （添加的按钮）
 - 注册个复选框组件          （已完成）
-- 确认信息界面
-- 提交成功界面
-- 表单排版-中文姓名拼音姓名
+- 确认信息界面            ok
+- 提交成功界面            ok
+- 表单排版-中文姓名拼音姓名 
+    + 先排版
+    + 在修改文本框特性
+    + 动态调取校验等
 - 提示文字
 - 表单选择框
 - 调取拼音
+- 查找下身份证键盘    (ios/anroad)
 
 
 
@@ -97,3 +101,67 @@
 - 3. 样式设置
     + .magic-checkbox+label:before 指的是复选框
     + .magic-checkbox+label:after 指的是复选框右边文字
+
+#### mdpopup 弹出框
+- 1. 主文件调用：
+```html
+// 以民族单列为例
+ <mt-field label="民族" placeholder="请选择民族" @focus.native.capture="ShowPupMz" v-model="forms.minzu"></mt-field>
+             <md-popup :inval="popupDataMz.inVal" :popup-data="popupDataMz" @popupHideMz="popupHideMz"></md-popup>
+```
+- 2. 参数设置： 
+```javascript
+// 设置默认参数
+data() {
+      return {
+        forms: {
+            minzu: '',
+        },
+       popupDataMz: {
+         fnName: 'popupHideMz',
+         inVal: false,
+         polab: '民族',
+         potaps: '请选择民族',
+         slots: [{
+           values: []
+         }],
+       },
+      }
+    }
+```
+```javascript
+     // 父传子
+           ShowPupMz() {
+             this.popupDataMz.inVal = true;
+           },
+     //民族 子传父
+     popupHideMz(data) {
+       this.popupDataMz.inVal = false;
+       if(data !== '') {
+         this.forms.minzu = data;
+       }
+    }
+```
+#### citySel 省市区
+- 同mdpopup配置与用法
+- 区别在于
+```html
+ <mt-field label="户籍地" placeholder="请选择户口所在地" @focus.native.capture="ShowPupHjd" v-model="forms.Hjd"></mt-field>
+      <city-sel :inval="popupDataHjd.inVal" :popup-data="popupDataHjd" @popupHideHjd="popupHideHjd"></city-sel>
+```
+- 不需要配置 slots 数据
+```javascript
+popupDataMz: {
+         fnName: 'popupHideMz',
+         inVal: false,
+         polab: '',
+         potaps: ''
+       },
+```
+
+### js知识点
+```
+叹号后面跟函数!function
+和加号后面跟函数+function
+都是跟(function(){})();这个函数是一个意思，都是告诉浏览器自动运行这个匿名函数的，因为!+()这些符号的运算符是最高的，所以会先运行它们后面的函数
+```
