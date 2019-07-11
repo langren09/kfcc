@@ -43,7 +43,15 @@
     watch: {
         inval() {
           this.popupVisible = this.inval;
+        },
+      //判断选择地区弹窗的状态
+      popupVisible: function(newvs){
+        if(newvs){ //如果areaVisible的值为true,说明弹窗出现
+          this.closeTouch(); //阻止body滑动
+        }else{ //如果areaVisible的值为false，说明弹窗隐藏
+          this.openTouch();//恢复body滑动
         }
+      }
     },
     methods: {
       onValuesChange(picker, values) {
@@ -63,6 +71,18 @@
         // 子传父
         this.$emit(this.popupDataMd.fnName, this.message);
         this.popupVisible = !this.popupVisible
+      },
+
+      /*解决iphone页面层级相互影响滑动的问题*/
+      closeTouch: function () {
+        document.getElementsByTagName("body")[0].addEventListener('touchmove',
+          this.handler, {passive: false});//阻止默认事件
+        console.log("closeTouch haved happened.");
+      },
+      openTouch: function () {
+        document.getElementsByTagName("body")[0].removeEventListener('touchmove',
+          this.handler, {passive: false});//打开默认事件
+        console.log("openTouch haved happened.");
       }
     }
   }
