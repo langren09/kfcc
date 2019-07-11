@@ -18,13 +18,13 @@
                 <mt-field label="拼音名" placeholder="SAN" type="text"></mt-field>
             </div>
 
-            <mt-field label="民族" placeholder="请选择民族" @focus.native.capture="ShowPupMz" v-model="forms.minzu"></mt-field>
+            <mt-field label="民族" placeholder="请选择民族" @focus.native.capture="ShowPupMz" v-model="forms.minzu" readonly="readonly"></mt-field>
             <md-popup :inval="popupDataMz.inVal" :popup-data="popupDataMz" @popupHideMz="popupHideMz"></md-popup>
 
             <mt-field label="户籍地" placeholder="请选择户口所在地" @focus.native.capture="ShowPupHjd" v-model="forms.Hjd" readonly="readonly"></mt-field>
             <city-sel :inval="popupDataHjd.inVal" :popup-data="popupDataHjd" @popupHideHjd="popupHideHjd"></city-sel>
 
-            <mt-field label="出生地" placeholder="请选择出生地" @focus.native.capture="ShowPupCSD" v-model="forms.CSD"></mt-field>
+            <mt-field label="出生地" placeholder="请选择出生地" @focus.native.capture="ShowPupCSD" v-model="forms.CSD" readonly="readonly"></mt-field>
             <md-popup :inval="popupDataCSD.inVal" :popup-data="popupDataCSD" @popupHideCSD="popupHideCSD"></md-popup>
 
             <mt-field label="手机号码" placeholder="请输入申请人的手机号码" type="tel"></mt-field>
