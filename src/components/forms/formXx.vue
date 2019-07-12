@@ -7,8 +7,8 @@
             <div class="nav">
                 <a href="">申请人基本信息</a>
             </div>
-            <mt-field label="身份证号码" placeholder="18位身份证号码" type="text"></mt-field>
-            <mt-field label="姓名" placeholder="请输入全名" type="text"></mt-field>
+            <mt-field label="身份证号码" placeholder="18位身份证号码" type="text" state="success"></mt-field>
+            <mt-field label="姓名" placeholder="请输入全名" type="text" state="error"></mt-field>
             <div class="nameZh clearFix">
                 <mt-field label="中文姓" placeholder="张" type="text"></mt-field>
                 <mt-field label="中文名" placeholder="三" type="text"></mt-field>
@@ -17,9 +17,19 @@
                 <mt-field label="拼音姓" placeholder="ZHANG" type="text"></mt-field>
                 <mt-field label="拼音名" placeholder="SAN" type="text"></mt-field>
             </div>
-
-            <mt-field label="民族" placeholder="请选择民族" @focus.native.capture="ShowPupMz" v-model="forms.minzu" readonly="readonly"></mt-field>
-            <md-popup :inval="popupDataMz.inVal" :popup-data="popupDataMz" @popupHideMz="popupHideMz"></md-popup>
+            <a class="sel mint-cell mint-field">
+                <div class="mint-cell-wrapper">
+                    <div class="mint-cell-title">
+                        <span class="mint-cell-text">民族</span>
+                    </div>
+                    <div class="mint-cell-value">
+                        <button placeholder="请选择民族" type="text" @focus="ShowPupMz" :class="forms.minzutextCss">{{ forms.minzu }}</button>
+                        <md-popup :inval="popupDataMz.inVal" :popup-data="popupDataMz" @popupHideMz="popupHideMz"></md-popup>
+                    </div>
+                </div>
+            </a>
+            <!--<mt-field label="民族" placeholder="请选择民族" @focus.native.capture="ShowPupMz" v-model="forms.minzu" readonly="readonly"></mt-field>-->
+            <!--<md-popup :inval="popupDataMz.inVal" :popup-data="popupDataMz" @popupHideMz="popupHideMz"></md-popup>-->
 
             <mt-field label="户籍地" placeholder="请选择户口所在地" @focus.native.capture="ShowPupHjd" v-model="forms.Hjd" readonly="readonly"></mt-field>
             <city-sel :inval="popupDataHjd.inVal" :popup-data="popupDataHjd" @popupHideHjd="popupHideHjd"></city-sel>
@@ -52,9 +62,14 @@
       return {
         step: 2,
         forms: {
-            minzu: '',
+            minzuPlaceholder: '请选择民族',
+            minzu: '请选择民族',
+            minzutextCss:'mint-field-core',
+            CSDPlaceholder: '请选择民族',
             CSD: '',
-            Hjd:''
+            HjdPlaceholder: '请选择民族',
+            Hjd:'',
+
         },
         popupDataMz: {
           fnName: 'popupHideMz',
@@ -117,6 +132,10 @@
       },
       // 父传子
       ShowPupMz() {
+        // 初始化默认字体
+        if (this.forms.minzu === this.forms.minzuPlaceholder) {
+            this.forms.minzutextCss += ' picT'
+        }
         this.popupDataMz.inVal = true;
       },
       // 父传子
@@ -131,7 +150,7 @@
       popupHideMz(data) {
         this.popupDataMz.inVal = false;
         if (data !== '') {
-          this.forms.minzu = data;
+          this.forms.minzu = data[0];
         }
       },
       //  出生地 子传父
@@ -180,6 +199,15 @@
     .btn .btnPri{
         background-color: #2A82E4;
         margin-bottom: 10px;
+    }
+    /*选择框样式*/
+    .sel button {
+        background-color: #fff;
+        text-align: left;
+        color: #888;
+    }
+    .sel button.picT{
+        color: #444;
     }
 </style>
 <style>

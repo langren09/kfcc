@@ -85,8 +85,8 @@
       this.popupDataMd = this.popupData;
       this.areaVisible = true;
         // 初始化省级列表界面
-        // var pros = ['请选择'];
-        var pros = [];
+        var pros = ['请选择'];
+        // var pros = [];
         this.areas = this.city.cityList;
         // 先将省级地区初始化上去
         for(var i=0; i<this.areas.length; i++) {
