@@ -1,7 +1,7 @@
 <template>
     <div class="popup">
         <!--弹出框-->
-        <mt-popup v-model="popupVisible" popup-transition="popup-fade" closeOnClickModal="true" position="bottom">
+        <mt-popup v-model="popupVisible" popup-transition="popup-fade" :closeOnClickModal="false" position="bottom">
             <mt-picker :slots="popupDataMd.slots" @change="onValuesChange" showToolbar>
                     <div class="picker-toolbar-title">
                         <div class="usi-btn-cancel" @click="hideCancel()">取消</div>
@@ -65,7 +65,6 @@
         // console.log(this.popupDataMd.fnName);
         this.$emit(this.popupDataMd.fnName, '');
         this.popupVisible = !this.popupVisible;
-        // console.log(this.popupData)
       },
       hideSure() {
         // 子传父

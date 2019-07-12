@@ -132,7 +132,7 @@
           // 复制地区列表
           picker.setSlotValues(2, areas);
         }
-        console.log(values);
+        // console.log(values);
       //  处理选项项内容
       //  处理直辖的市区重复问题
         if(values[1] === values[2]) {
@@ -152,7 +152,7 @@
       },
       hideSure() {
         // 判断是否存在'请选择'项
-        if(this.message.indexOf('请选择') > 0) {
+        if(this.message.indexOf('请选择') >= 0) {
           this.message = ''
         }
         // 子传父

@@ -23,7 +23,7 @@
                         <span class="mint-cell-text">民族</span>
                     </div>
                     <div class="mint-cell-value">
-                        <button placeholder="请选择民族" type="text" @focus="ShowPupMz" :class="forms.minzutextCss">{{ forms.minzu }}</button>
+                        <div placeholder="请选择民族" type="text" @click="ShowPupMz" :class="forms.minzutextCss">{{ forms.minzu }}</div>
                         <md-popup :inval="popupDataMz.inVal" :popup-data="popupDataMz" @popupHideMz="popupHideMz"></md-popup>
                     </div>
                 </div>
@@ -122,13 +122,11 @@
       },
       // 初始化出生地列表数据
       initCSD() {
-        // console.log(this.jsonData.CsdList);
         this.popupDataCSD.slots[0].values = this.jsonData.CsdList;
       },
       // 初始化户籍地列表数据
       initHjd() {
-        // console.log(this.jsonData.CsdList);
-        // this.popupDataCSD.slots[0].values = this.jsonData.CsdList;
+
       },
       // 父传子
       ShowPupMz() {
@@ -148,9 +146,13 @@
       },
       //  民族 子传父
       popupHideMz(data) {
+        // 清除取消默认不选择的样式
         this.popupDataMz.inVal = false;
         if (data !== '') {
           this.forms.minzu = data[0];
+        }else if((data === '')&&(this.forms.minzu !== this.forms.minzuPlaceholder)) {
+          this.forms.minzutextCss = this.forms.minzutextCss.replace(' picT', '')
+          console.log(this.forms.minzutextCss);
         }
       },
       //  出生地 子传父
@@ -201,12 +203,12 @@
         margin-bottom: 10px;
     }
     /*选择框样式*/
-    .sel button {
+    .sel div.mint-field-core {
         background-color: #fff;
         text-align: left;
         color: #888;
     }
-    .sel button.picT{
+    .sel div.picT{
         color: #444;
     }
 </style>
